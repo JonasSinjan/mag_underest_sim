@@ -10,7 +10,7 @@ import pymilos as pym
 import pymilos_5250 as pym5
 import copy
 
-def load_data(folder: str,angle: str,snapshot: str,default_dir: str ="/export/local/scratch/sinjan/spinor_fwd") -> np.ndarray:
+def load_data(folder: str,angle: str,snapshot: str,default_dir: str ="/path/to/spinor_files") -> np.ndarray:
     """load stokes profiles and reorder
 
     Parameters
@@ -195,7 +195,7 @@ def run_cmilos(data,wave_axis,rte,options=[6,15],out_dir='./', loc='cmilos/', sy
         inverted physical quantities [y,x,12] 
     """
     try:
-        CMILOS_LOC = "/scratch/slam/sinjan/true_flux_project/" + loc
+        CMILOS_LOC = "../milos_codes/" + loc
         if os.path.isfile(CMILOS_LOC+'milos'):
             print("Cmilos executable located at:", CMILOS_LOC)
         else:
@@ -726,7 +726,7 @@ def print_console(folder, angle, snapshot):
 
 def get_cmilos_blos_inst_pixel(folder, angle, snapshot, dlambda, inst=None, downscale_mean=False, remainder_mode='round', \
                                refwv=6173.341, dshape=288, pixel_res=20.833333, return_mean=True, \
-                                default_dir="/export/local/scratch/sinjan/spinor_fwd"):
+                                default_dir="/path/to/spinor_files"):
     """get BLOS for a given instrument resolution via CMILOS (DEPRECATED - use get_blos_inst_pixel)"""
     print_console(folder, angle, snapshot)
     data = load_data(folder, angle, snapshot, default_dir=default_dir)
@@ -741,7 +741,7 @@ def get_cmilos_blos_inst_pixel(folder, angle, snapshot, dlambda, inst=None, down
 
 
 def create_stokes_profiles(folder, angle, snapshot, inst=None, downscale_mean=False, remainder_mode='round', dshape=288, \
-                           pixel_res=20.833333, default_dir="/export/local/scratch/sinjan/spinor_fwd"):
+                           pixel_res=20.833333, default_dir="/path/to/spinor_files"):
     """create stokes profiles for a given instrument resolution
     Parameters
     ----------
@@ -826,7 +826,7 @@ def get_blos(data, dlambda, refwv, blos_method, return_mean, folder, angle, snap
 
 def get_blos_inst_pixel(folder, angle, snapshot, dlambda=0.35, inst=None, downscale_mean=False, remainder_mode='round', \
                         refwv=6173.341, dshape=288, pixel_res=20.833333, blos_method='CMILOS', return_mean=True, \
-                        default_dir="/export/local/scratch/sinjan/spinor_fwd", q_u_0=False, ext='',niter=15, \
+                        default_dir="/path/to/spinor_files", q_u_0=False, ext='',niter=15, \
                         initial_model=[400.,30.,120.,10.,0.05,1.5,0.01,0.22,0.85], weights=[1,1,1,1]):
     """get BLOS for a given instrument resolution and method from a given snaspshot and inclination
 
@@ -857,8 +857,8 @@ def get_blos_inst_pixel(folder, angle, snapshot, dlambda=0.35, inst=None, downsc
     return_mean: bool
         if True, return the mean of the BLOS, else return the BLOS map
     default_dir: str
-        default path to the folders (default "/export/local/scratch/sinjan/spinor_fwd")
-    
+        default path to the folders 
+
     Returns
     -------
     BLOS: numpy ndarray
