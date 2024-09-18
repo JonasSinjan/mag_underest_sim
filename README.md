@@ -11,3 +11,7 @@ ArXiv link: [https://arxiv.org/abs/2407.08368](arxiv.org/abs/2407.08368)
 Unfortunately it is not possible for an end user to rerun all these scripts, as it is not possible to share all the underlying MURaM simulation files and SPINOR generated synthetic data. Together all those files total more than 1TB.
 
 This repository purely serves to display the code and notebooks that I used. 
+
+The critical files for the analysis are:
+- `gen_paper_plots/blos_binning_helper.py`
+- `gen_paper_plots/milos_inv_syn.py`
